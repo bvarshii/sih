@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Terrain</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Udhyana</div>
+    <!-- Add new dropdown for Tours in HTML -->
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Menu</a>
+            <!-- Favourites Link -->
+            <div class="favorites-menu">
+                <a href="#" id="favourites-link">Favourites</a>
+                <div class="favorites-menu-content" id="favorites-list">
+                <!-- Favorites list will be dynamically populated here -->
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" id="tours">Tours</a>
+                <div class="dropdown-content">
+                    <a href="#" id="tour-immunity">Immunity</a>
+                    <a href="#" id="tour-skincare">Skin Care</a>
+                    <a href="#" id="tour-haircare">Hair Care</a>
+                    <a href="#" id="tour-guthealth">Gut Health</a>
+                </div>
+            </div>
+            <a href="index.html">Store</a>
+            <a href="#">Forum</a>
+        </nav>
+
+        <div class="search">
+            <input type="text" id="search-bar" placeholder="Search..."> <!-- Added id="search-bar" -->
+            <div class="search-icon" id="search-btn">🔍</div> <!-- Added id="search-btn" -->
+        </div>
+        <div></div>
+        <div class="audio-control">
+            <button id="audio-btn">🔈</button>
+        </div>
+        <audio id="background-audio" loop muted>
+            <source src="backyard-nature-14737.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+    </header>
+
+    <!-- Background image -->
+    <div class="background">
+        <img src="images/background.png" alt="Background Image" class="background-image">
+    </div>
+    
+    <div class="parallax-fence-container">
+        <img src="images/parallax_bush.png" alt="Parallax Bush" class="parallax-bush">
+    </div>
+    
+    <!-- Parallax Image -->
+    <div class="parallax-container">
+        <img src="images/2-removebg.png" alt="Parallax Image" class="parallax-image">
+    </div>
+    <!-- Scrollable section -->
+    <div class="scroll-section">
+        <!-- Plant Container -->
+        <div class="container">
+            <!-- Leftmost Columns -->
+            <div class="column">
+                <div class="plant" data-plant="Tulsi"><img src="images/tulsi.png" alt="Tulsi"><p>Tulsi</p></div>
+                <div class="plant" data-plant="Turmeric"><img src="images/turmeric.png" alt="Turmeric"><p>Turmeric</p></div>
+                <div class="plant" data-plant="Aloe Vera"><img src="images/aloe vera.png" alt="Aloe Vera"><p>Aloe Vera</p></div>
+                <div class="plant" data-plant="Dandelion"><img src="images/dandelion.png" alt="Dandelion"><p>Dandelion</p></div>
+                <div class="plant" data-plant="Lavender"><img src="images/lavender.png" alt="Lavender"><p>Lavender</p></div><br>
+                <div class="plant" data-plant="Calendula"><img src="images/calendula.png" alt="Calendula"><p>Calendula</p></div><br>
+                <div class="plant" data-plant="Skullcap"><img src="images/skullcap.png" alt="Skullcap"><p>Skullcap</p></div><br>
+            </div>
+            <div class="column">
+                <div class="plant" data-plant="Mint"><img src="images/mint.png" alt="Mint"><p>Mint</p></div>
+                <div class="plant" data-plant="Chamomile"><img src="images/chamomile.png" alt="Chamomile"><p>Chamomile</p></div>
+                <div class="plant" data-plant="Barberry"><img src="images/barberry plant.png" alt="Barberry"><p>Barberry</p></div>
+                <div class="plant" data-plant="Thyme"><img src="images/thyme.png" alt="Thyme"><p>Thyme</p></div>
+                <div class="plant" data-plant="Amla"><img src="images/aamla.png" alt="Amla"><p>Amla</p></div>
+                <div class="plant" data-plant="Lemongrass"><img src="images/lemongrass.png" alt="Lemongrass"><p>Lemongrass</p></div>
+                <div class="plant" data-plant="Cilantro"><img src="images/cilantro.png" alt="Cilantro"><p>Cilantro</p></div>
+            </div>
+            <div class="column">
+                <!-- Empty column -->
+            </div>
+            <div class="column">
+                <!-- Empty column -->
+            </div>
+            <div class="column">
+                <!-- Empty column -->
+            </div>
+            <!-- Rightmost Columns -->
+            <div class="column">
+                <div class="plant" data-plant="Cinnamon"><img src="images/cinnamon.png" alt="Cinnamon"><p>Cinnamon</p></div>
+                <div class="plant" data-plant="Echinacea"><img src="images/echinacea.png" alt="Echinacea"><p>Echinacea</p></div>
+                <div class="plant" data-plant="Ajwain"><img src="images/ajwain_plant.png" alt="Ajwain"><p>Ajwain</p></div>
+                <div class="plant" data-plant="Ashwagandha"><img src="images/ashwagandha.png" alt="Ashwagandha"><p>Ashwagandha</p></div>
+                <div class="plant" data-plant="Asian Ginseng"><img src="images/asian_ginseng.png" alt="Asian Ginseng"><p>Asian Ginseng</p></div>
+                <div class="plant" data-plant="Evening Primrose"><img src="images/evening_primrose.png" alt="Evening Primrose"><p>Evening Primrose</p></div>
+            </div>
+            <div class="column">
+                <div class="plant" data-plant="Saffron"><img src="images/saffron.png" alt="Saffron"><p>Saffron</p></div>
+                <div class="plant" data-plant="Valerian"><img src="images/valerian.png" alt="Valerian"><p>Valerian</p></div>
+                <div class="plant" data-plant="Fennel"><img src="images/fennel.png" alt="Fennel"><p>Fennel</p></div>
+                <div class="plant" data-plant="Lemon Balm"><img src="images/lemon_balm.png" alt="Lemon Balm"><p>Lemon Balm</p></div>
+                <div class="plant" data-plant="Eucalyptus Tree"><img src="images/Eucalyptus_tree.png" alt="Eucalyptus Tree"><p>Eucalyptus Tree</p></div>
+                <div class="plant" data-plant="Rosemary"><img src="images/rosemary.png" alt="Rosemary"><p>Rosemary</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="plant-popup">
+        <h2 id="plant-name"></h2>
+        <p id="plant-info"></p>
+        <button class="close-btn" id="close-popup">Close</button>
+        <button class="learn-btn" id="learn-more">Learn More</button>
+        <button class="button button-like" id="like-btn">
+            <i class="fa fa-heart"></i>
+            <span>Like</span>
+        </button>
+
+    </div>
+
+
+    <script src="script.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udhyana - Your Virtual Herbal Garden</title>
+    <link rel="stylesheet" href="opening.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Udhyana</h1>
+        <p id="subtitle">Your virtual herbal garden</p>
+        <div class="play-btn" id="playButton" onclick="showZoomEffect()">
+            <i>&#9654;</i>
+        </div>
+    </div>
+
+    <!-- Garden gate image overlay -->
+    <div id="gardenGate"></div>
+
+    <script>
+        window.onload = function () {
+            // Trigger transition for title, subtitle, and play button one by one
+            document.getElementById('title').style.opacity = '1';
+            document.getElementById('subtitle').style.opacity = '1';
+            document.getElementById('playButton').style.opacity = '1';
+        };
+
+        function showZoomEffect() {
+            // Hide the initial content
+            document.querySelector('.container').style.display = 'none';
+
+            // Animate the garden gate (scale up)
+            var gardenGate = document.getElementById('gardenGate');
+            gardenGate.style.transform = 'scale(20)';
+            gardenGate.style.transition = 'transform 1s ease-in-out';
+
+            // Fade out to black after the zoom effect
+            setTimeout(function () {
+                document.body.style.transition = 'background-color 1s ease-in-out';
+                document.body.style.backgroundColor = 'black'; // Fade the page to black
+            }, 1000); // After 1 second of zoom
+
+            // Redirect to lala.html after the fade effect
+            setTimeout(function () {
+                window.location.href = 'lala.html';
+            }, 2000); // After 2 seconds in total (1 second of zoom + 1 second of fade)
+        }
+    </script>
+</body>
+</html>

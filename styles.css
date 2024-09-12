@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+
+/* Intro Overlay */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Slightly transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures it's on top */
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Original background */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -2; /* Ensure it's behind the parallax image */
+}
+
+.background img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+/* Parallax container for the bush */
+.parallax-bush-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Match the full height of the content */
+    z-index: -1; /* Above the main background, behind the new image */
+    overflow: hidden;
+}
+
+/* Parallax bush image */
+.parallax-bush {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Match the dimensions of the image */
+}
+
+/* The previous parallax image */
+.parallax-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2000px; /* Match the full height of the content */
+    z-index: -1; /* Ensure it's above the bush and background */
+    overflow: auto;
+}
+
+.parallax-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Match the dimensions of the image */
+}
+
+
+
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 10px 40px; /* Increased padding for more space */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: rgb(89, 177, 121); /* Changed color to black */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-family: 'Trebuchet MS', sans-serif; /* Consistent font family */
+}
+
+nav {
+    display: flex;
+    gap: 80px; /* Increased gap for more space */
+}
+
+nav a {
+    color: rgb(255, 255, 255); /* Changed color to black */
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Trebuchet MS', sans-serif; /* Consistent font family */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+nav a:hover {
+    color: #4a4a4a; /* Slightly lighter color on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Dropdown Content (hidden by default) */
+.favorites-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Show the dropdown when clicked */
+.favorites-dropdown-content.show {
+    display: block;
+}
+
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.search input {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc; /* Neutral border color */
+    border-radius: 20px; /* Rounded borders */
+    background-color: #f7f7f7; /* Light neutral background */
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-icon {
+    margin-left: 10px;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.search-icon:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+body {
+	background-color: #2e3537;
+}
+
+@keyframes fallingsparkles {
+    from {
+      transform: translateY(0);
+    }
+  
+    to {
+      transform: translateY(50px);
+    }
+  }
+  
+/* Container for plants */
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 120px; /* Space for the header */
+    padding-left: 40px; /* Increased space for the left side */
+    padding-right: 40px; /* Increased space for the right side */
+    color: aliceblue;
+    font-family: 'Brush Script MT', cursive;
+}
+/* Audio Control Button */
+.audio-control {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+#audio-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#audio-btn:hover {
+    transform: scale(1.2);
+}
+
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+    padding: 10px;
+    height: auto;
+}
+
+.plant {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.plant img {
+    width: 150px; /* Increased size of the plant images */
+    height: auto;
+}
+
+/* Hover effect - reduce opacity slightly */
+.plant:hover {
+    opacity: 0.8;
+}
+
+/* Click effect - pop and shadow */
+.plant:active {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Pop-up styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+    width: 500px;
+    z-index: 2000;
+}
+
+.popup h2 {
+    margin-bottom: 10px;
+}
+
+.popup p {
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    background-color: #659082;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.learn-btn {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 2px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button-like {
+    border: 2px solid #8a8a8a;
+    background-color: transparent;
+    text-decoration: none;
+    padding: 0.5rem;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3rem;
+    color: #8a8a8a;
+    transition: all ease 0.4s;
+  }
+  
+  .button-like span {
+    margin-left: 0.5rem;
+  }
+  
+  .button-like .fa,
+  .button-like span {
+    transition: all ease 0.4s;
+  }
+  
+  .button-like:hover {
+    border-color: #cc4b37;
+    background-color: transparent;
+  }
+  
+  .button-like:hover .fa,
+  .button-like:hover span {
+    color: #cc4b37;
+  }
+  
+  .liked {
+    background-color: #cc4b37;
+    border-color: #cc4b37;
+  }
+  
+  .liked .fa,
+  .liked span {
+    color: #fefefe;
+  }
+  
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.highlight {
+    position: relative; /* Needed for absolute positioning of the circle */
+}
+
+.highlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px; /* Adjust based on image size */
+    height: 180px; /* Adjust based on image size */
+    background-color: rgba(246, 246, 162, 0.4); /* Light yellow circle */
+    border-radius: 50%; /* Makes it a perfect circle */
+    transform: translate(-50%, -50%); /* Centers the circle on the image */
+    z-index: -1; /* Ensures the highlight is behind the image */
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.highlight:hover::before {
+    transform: translate(-50%, -50%) scale(1.2); /* Increases circle size on hover */
+    opacity: 1;
+}
+
+/* Favorites menu styling */
+.favorites-menu {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif; /* Applying the font-family */
+}
+
+.favorites-menu-content {
+    display: none;
+    position: absolute;
+    background-color: #b0b9b1;
+    min-width: 160px;
+    z-index: 1000;
+    left: 0;  /* Ensures the menu aligns with the button */
+    top: 100%; /* Positions the menu right below the button */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Adds a shadow for a pop effect */
+    border-radius: 5px;
+}
+
+.favorites-menu-content a,
+.favorites-menu-content div {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    font-family: Arial, sans-serif; /* Applying the font-family */
+}
+
+.favorites-menu-content a:hover,
+.favorites-menu-content div:hover {
+    background-color: #9da9a1;
+}
+
+/* Show favorites menu on hover */
+.favorites-menu:hover .favorites-menu-content {
+    display: block;
+}
+
+/* Remove button styling within favorites menu */
+.favorites-menu-content button.remove-btn {
+    background-color: #f5c0bb; /* Red background */
+    color: rgb(0, 0, 0); /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 12px; /* Padding for better size */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-family: Arial, sans-serif; /* Font style */
+    font-size: 12px; /* Font size */
+    text-align: center; /* Center text */
+    margin: 4px 0; /* Margin for spacing */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.favorites-menu-content button.remove-btn:hover {
+    background-color: #fdc5bf; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.favorites-menu-content button.remove-btn:active {
+    background-color: #f5c0bb; /* Even darker red when clicked */
+    transform: scale(1); /* Return to original size */
+}
+
+
+
+/* Dropdown menu styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #b0b9b1;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #9da9a1;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.tour-message {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 100%; /* Position below the plant */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 2000;
+    font-size: 0.9rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+

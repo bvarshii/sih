@@ -1,0 +1,221 @@
+body{
+    background-color: #A7BEAE;
+    font-family: system-ui;
+}
+.container{
+    width: 1000px;
+    margin: auto;
+    transition: 0.5s;
+}
+/* Move the header up by adjusting the margin */
+header {
+    display: grid;
+    grid-template-columns: 2fr 50px;
+    margin-top: 0px; /* Reduced margin */
+    padding-left: 30px;
+    padding-right: 50px;
+    position: relative; /* Allows more control over positioning */
+    top: -20px; /* Move the header further up */
+}
+
+/* Adjust the alignment of the search bar and title */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Style the search bar */
+header input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #1C1F25;
+    border-radius: 20px;
+    outline: none;
+}
+
+/* Style for Cart text */
+.shopping {
+    margin-top: 0px; /* Adjusted top margin for alignment */
+    position: relative;
+    text-align: right;
+    display: flex;
+    align-items: center; /* Align cart icon and text vertically */
+}
+
+.shopping .cart-text {
+    font-size: 18px;
+    margin-right: 10px; /* Spacing between text and cart icon */
+    font-weight: bold;
+    color: #1C1F25;
+}
+
+header .shopping img {
+    width: 40px;
+}
+
+header .shopping span.quantity {
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 85%;
+    padding: 3px 10px;
+}
+
+.list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-top: 50px;
+}
+.list .item{
+    text-align: center;
+    background-color: #DCE0E1;
+    padding: 20px;
+    box-shadow: 0 50px 50px #757676;
+    letter-spacing: 1px;
+    height: 330px; /* Adjusted for square container */
+}
+.list .item img{
+    width: 90%;
+    height: 200px; /* Adjusted for square container */
+    object-fit: cover;
+}
+.list .item .title{
+    font-weight: 600;
+}
+.list .item .price{
+    margin: 10px;
+}
+.list .item button{
+    background-color: #1C1F25;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    transition: opacity 0.3s ease, transform 0.1s ease; 
+    border-radius: 20px;
+}
+.list .item button:hover{
+    opacity: 0.7; /* Fades button on hover */
+}
+.list .item button:active{
+    transform: scale(0.95);
+}    
+.card{
+    position: fixed;
+    top:0;
+    left: 100%;
+    width: 500px;
+    background-color: #B85042;
+    height: 100vh;
+    transition: 0.5s;
+}
+.active .card{
+    left: calc(100% - 500px);
+}
+.active .container{
+   transform: translateX(-200px);
+}
+.card h1{
+    color: #1C1F25;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+.card .checkOut{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+.card .checkOut div{
+    background-color: #E8BC0E;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.card .checkOut div:nth-child(2){
+    background-color: #1C1F25;
+    color: #fff;
+}
+.listCard li{
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    color:#E7E8D1;
+    row-gap: 10px;
+}
+.listCard li div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listCard li img{
+    width: 90%;
+}
+.listCard li button{
+    background-color: #fff5;
+    border: none;
+}
+.listCard .count{
+    margin: 0 10px;
+}
+
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible when shown */
+    min-width: 250px; /* Set a default width */
+    margin-left: -125px; /* Margin is negative half of the width */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Positioned at the bottom */
+    z-index: 1; /* Sit on top of other elements */
+    left: 50%; /* Centered horizontally */
+    bottom: 30px; /* 30px from the bottom */
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay it by 2.5 seconds before fading out. */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+

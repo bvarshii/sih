@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Terrain</title>
+    <style>
+        /* Global reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #6b8e23; /* Fallback color */
+        }
+
+        /* Background container */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        /* Stack multiple background images vertically */
+        .background img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Header styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #8b7211; /* Matching color from the example */
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensures the header stays above content */
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: #d6ffb7;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+        }
+
+        .search input {
+            padding: 5px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search-icon {
+            margin-left: 10px;
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Container for plants */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding-top: 120px; /* Space for the header */
+            padding-left: 40px; /* Increased space for the left side */
+            padding-right: 40px; /* Increased space for the right side */
+            color: aliceblue;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .column{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 20%;
+            padding: 10px;
+        }
+
+        .plant {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .plant img {
+            width: 70px; /* Increased size of the plant images */
+            height: auto;
+        }
+        
+        /* Hover effect - reduce opacity slightly */
+        .plant:hover {
+            opacity: 0.8;
+        }
+
+        /* Click effect - pop and shadow */
+        .plant:active {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .plant img {
+            width: 150px;
+            height: auto;
+        }
+
+        /* Pop-up styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+            width: 300px;
+            z-index: 2000;
+        }
+
+        .popup h2 {
+            margin-bottom: 10px;
+        }
+
+        .popup p {
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background-color: #806c35;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .learn-btn{
+            background-color: #c2920c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .highlight {
+    position: relative; /* Needed for absolute positioning of the circle */
+}
+
+.highlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px; /* Adjust based on image size */
+    height: 180px; /* Adjust based on image size */
+    background-color: rgba(246, 246, 162, 0.4); /* Light yellow circle */
+    border-radius: 50%; /* Makes it a perfect circle */
+    transform: translate(-50%, -50%); /* Centers the circle on the image */
+    z-index: -1; /* Ensures the highlight is behind the image */
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.highlight:hover::before {
+    transform: translate(-50%, -50%) scale(1.2); /* Increases circle size on hover */
+    opacity: 1;
+}
+
+
+</style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Udhyana</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Menu</a>
+            <a href="#">Favourites</a>
+            <a href="#">Tours</a>
+            <a href="#">Shop</a>
+            <a href="#">Forum</a>
+        </nav>
+        <div class="search">
+            <input type="text" id="search-bar" placeholder="Search..."> <!-- Added id="search-bar" -->
+            <div class="search-icon" id="search-btn">🔍</div> <!-- Added id="search-btn" -->
+        </div>
+        
+    </header>
+
+    <!-- long Background image -->
+    <div class="background">
+        <img src="images/background.png" alt="Background Image">
+    </div>
+
+    <!-- Scrollable section -->
+    <div class="scroll-section">
+        <!-- Plant Container -->
+        <div class="container">
+            <!-- Leftmost Columns -->
+            <div class="column1">
+                <div class="plant" data-plant="Tulsi"><img src="images/tulsi.png" alt="Tulsi"><p>Tulsi</p></div>
+                <div class="plant" data-plant="Turmeric"><img src="images/turmeric.png" alt="Turmeric"><p>Turmeric</p></div>
+                <div class="plant" data-plant="Aloe Vera"><img src="images/aloe vera.png" alt="Aloe Vera"><p>Aloe Vera</p></div>
+                <div class="plant" data-plant="Dandelion"><img src="images/dandelion.png" alt="Dandelion"><p>Dandelion</p></div>
+                <div class="plant" data-plant="Lavender"><img src="images/lavender.png" alt="Lavender"><p>Lavender</p></div>
+            </div>
+            <div class="column">
+                <div class="plant" data-plant="Mint"><img src="images/mint.png" alt="Mint"><p>Mint</p></div>
+                <div class="plant" data-plant="Chamomile"><img src="images/chamomile.png" alt="Chamomile"><p>Chamomile</p></div>
+                <div class="plant" data-plant="Barberry"><img src="images/barberry plant.png" alt="Barberry"><p>Barberry</p></div>
+                <div class="plant" data-plant="Thyme"><img src="images/thyme.png" alt="Thyme"><p>Thyme</p></div>
+                <div class="plant" data-plant="Lemongrass"><img src="images/lemongrass.png" alt="Lemongrass"><p>Lemongrass</p></div>
+            </div>
+            <div class="column">
+
+            </div>
+            <div class="column">
+
+            </div>
+            <div class="column">
+
+            </div>
+            <!-- Rightmost Columns -->
+            <div class="column">
+                <div class="plant" data-plant="Cinnamon"><img src="images/cinnamon.png" alt="Cinnamon"><p>Cinnamon</p></div>
+                <div class="plant" data-plant="Echinacea"><img src="images/echinacea.png" alt="Echinacea"><p>Echinacea</p></div>
+                <div class="plant" data-plant="Ajwain"><img src="images/ajwain_plant.png" alt="Ajwain"><p>Ajwain</p></div>
+                <div class="plant" data-plant="Ashwagandha"><img src="images/ashwagandha.png" alt="Ashwagandha"><p>Ashwagandha</p></div>
+                <div class="plant" data-plant="Amla"><img src="images/aamla.png" alt="Amla"><p>Amla</p></div>
+            </div>
+            <div class="column">
+                <div class="plant" data-plant="Saffron"><img src="images/saffron.png" alt="Saffron"><p>Saffron</p></div>
+                <div class="plant" data-plant="Valerian"><img src="images/valerian.png" alt="Valerian"><p>Valerian</p></div>
+                <div class="plant" data-plant="Fennel"><img src="images/fennel.png" alt="Fennel"><p>Fennel</p></div>
+                <div class="plant" data-plant="Lemon Balm"><img src="images/lemon_balm.png" alt="Lemon Balm"><p>Lemon Balm</p></div>
+                <div class="plant" data-plant="Eucalyptus Tree"><img src="images/Eucalyptus_tree.png" alt="Eucalyptus Tree"><p>Eucalyptus Tree</p></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="plant-popup">
+        <h2 id="plant-name"></h2>
+        <p id="plant-info"></p>
+        <button class="close-btn" id="close-popup">Close</button>
+        <button class="learn-btn" id="learn-more">Learn More</button>
+    </div>
+
+    <script>
+        // Plant data (you can expand this)
+        const plantInfo = {
+            "Tulsi": "Tulsi is known for its medicinal uses in Ayurveda.",
+            "Turmeric": "Turmeric has anti-inflammatory properties.",
+            "Aloe Vera": "Aloe Vera is used for its skin healing properties.",
+            "Saffron": "Saffron is a precious spice used for cooking and medicine.",
+            "Lavender": "Lavender is used in aromatherapy to reduce stress.",
+            "Mint": "Mint is known for its fresh flavor and is used in cooking.",
+            "Chamomile": "Chamomile is used in tea and is known for its calming effects.",
+            "Barberry": "Barberry is used in herbal medicine for digestion.",
+            "Thyme": "Thyme is a culinary herb with antiseptic properties.",
+            "Lemongrass": "Lemongrass is used in cooking and for medicinal purposes."
+        };
+
+        // Show popup with plant info
+        document.querySelectorAll('.plant').forEach(plant => {
+            plant.addEventListener('click', function() {
+                const plantName = this.getAttribute('data-plant');
+                document.getElementById('plant-name').textContent = plantName;
+                document.getElementById('plant-info').textContent = plantInfo[plantName];
+
+                // Show popup and overlay
+                document.querySelector('.popup-overlay').style.display = 'block';
+                document.getElementById('plant-popup').style.display = 'block';
+            });
+        });
+
+        // Close the popup
+        document.getElementById('close-popup').addEventListener('click', function() {
+            document.querySelector('.popup-overlay').style.display = 'none';
+            document.getElementById('plant-popup').style.display = 'none';
+        });
+
+        // Close the popup when clicking outside of it
+        document.querySelector('.popup-overlay').addEventListener('click', function() {
+            document.querySelector('.popup-overlay').style.display = 'none';
+            document.getElementById('plant-popup').style.display = 'none';
+        });
+        // Search functionality
+document.getElementById('search-btn').addEventListener('click', function () {
+    const searchTerm = document.getElementById('search-bar').value.toLowerCase(); // Corrected the input ID
+    const plants = document.querySelectorAll('.plant');
+
+    let found = false;
+    plants.forEach(plant => {
+        const plantName = plant.dataset.plant.toLowerCase();
+
+        if (plantName.includes(searchTerm)) {
+            plant.classList.add('highlight');
+            // Scroll into view with slow behavior
+            plant.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            found = true;
+        } else {
+            plant.classList.remove('highlight');
+        }
+    });
+
+    if (!found) {
+        alert("No plants found.");
+    }
+    });
+
+
+        
+
+    </script>
+</body>
+</html> 
